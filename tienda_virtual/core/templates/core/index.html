@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natursur - Herbalife & Fisioterapia</title>
+</head>
+<body>
+    <h1>Bienvenido a Natursur</h1>
+    <p>Plataforma unificada para productos Herbalife y citas de fisioterapia</p>
+
+    <nav>
+        <a href="{% url 'products:list' %}">Productos Herbalife</a> |
+        <a href="{% url 'appointments:book' %}">Reservar Cita</a> |
+        <a href="{% url 'social:links' %}">Redes Sociales</a>
+    </nav>
+</body>
+</html>
