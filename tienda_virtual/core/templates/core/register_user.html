@@ -1,0 +1,31 @@
+{% extends "core/auth_base.html" %}
+{% block title %}Registro Usuario - Natursur{% endblock %}
+{% block content %}
+    <div class="form-header">
+        <h1>Register</h1>
+    </div>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        <div class="field">{{ form.username }}</div>
+        <div class="field">{{ form.direccion }}</div>
+        <div class="field">{{ form.codigo_postal }}</div>
+        <div class="field">{{ form.fecha_nacimiento }}</div>
+        <div class="field">{{ form.telefono }}</div>
+        <div class="field">{{ form.password }}</div>
+        <p class="hint">(Estos datos podrás modificarlos en tu Perfil una vez te hayas registrado)</p>
+        <button type="submit" class="primary-btn">¡Registrarme!</button>
+    </form>
+
+    <div class="bottom-links">
+        <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a></p>
+    </div>
+{% endblock %}
