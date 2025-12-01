@@ -1,0 +1,192 @@
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User as DjangoUser
+
+from main.models import Service, Product, Tarifa, Cita, User as Profile
+
+
+# ------------------------------------
+# HOME
+# ------------------------------------
+def home(request):
+    services = Service.objects.all()
+    products = Product.objects.all()[:8]
+    return render(request, "home.html", {
+        "services": services,
+        "products": products,
+    })
+
+
+# ------------------------------------
+# SERVICIOS
+# ------------------------------------
+def servicios_list(request):
+    servicios = Service.objects.all()
+    tarifas = Tarifa.objects.all()
+
+    return render(request, "servicios/list.html", {
+        "servicios": servicios,
+        "tarifas": tarifas,
+    })
+
+
+def servicio_detalle(request, service_id):
+    service = get_object_or_404(Service, id=service_id)
+    tarifas = Tarifa.objects.filter(service=service)
+    return render(request, "servicios/detalle.html", {
+        "service": service,
+        "tarifas": tarifas,
+    })
+
+
+# ------------------------------------
+# PRODUCTOS
+# ------------------------------------
+def productos_list(request):
+    productos = Product.objects.all()
+    return render(request, "productos/list.html", {"productos": productos})
+
+
+# ------------------------------------
+# CITAS
+# ------------------------------------
+@login_required
+def citas_list(request):
+    citas = Cita.objects.filter(user=request.user.profile)
+    return render(request, "citas/list.html", {"citas": citas})
+
+
+@login_required
+def crear_cita(request, service_id, tarifa_id):
+    service = get_object_or_404(Service, id=service_id)
+    tarifa = get_object_or_404(Tarifa, id=tarifa_id)
+
+    if request.method == "POST":
+        fecha = request.POST.get("fecha")
+        hora = request.POST.get("hora")
+
+        Cita.objects.create(
+            user=request.user.profile,
+            service=service,
+            tarifa=tarifa,
+            date=fecha,
+            time=hora,
+        )
+        return redirect("citas_list")
+
+    return render(request, "citas/crear.html", {
+        "service": service,
+        "tarifa": tarifa,
+    })
+
+
+@login_required
+def editar_cita(request, cita_id):
+    cita = get_object_or_404(Cita, id=cita_id, user=request.user.profile)
+
+    if request.method == "POST":
+        cita.date = request.POST.get("fecha")
+        cita.time = request.POST.get("hora")
+        cita.save()
+        return redirect("citas_list")
+
+    return render(request, "citas/editar.html", {"cita": cita})
+
+
+@login_required
+def cancelar_cita(request, cita_id):
+    cita = get_object_or_404(Cita, id=cita_id, user=request.user.profile)
+
+    if request.method == "POST":
+        cita.estado = "cancelada"
+        cita.save()
+        return redirect("citas_list")
+
+    return render(request, "citas/cancelar.html", {"cita": cita})
+
+
+# ------------------------------------
+# LOGIN
+# ------------------------------------
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user:
+            login(request, user)
+            return redirect("home")
+
+    return render(request, "login.html")
+
+
+# ------------------------------------
+# REGISTER
+# ------------------------------------
+def register_view(request):
+    if request.method == "POST":
+        data = request.POST
+
+        # Crear usuario Django
+        django_user = DjangoUser.objects.create_user(
+            username=data["username"],
+            password=data["password"],
+            email=data["mail"],
+            first_name=data["first_name"],
+            last_name=data["last_name"],
+        )
+
+        # Crear perfil asociado
+        Profile.objects.create(
+            django_user=django_user,
+            first_name=data["first_name"],
+            last_name=data["last_name"],
+            username=data["username"],
+            mail=data["mail"],
+            direccion=data["direccion"],
+            postal_code=data["postal_code"],
+            age=data["age"],
+            telephone_number=data["telephone_number"],
+            password=data["password"],
+        )
+
+        login(request, django_user)
+        return redirect("home")
+
+    return render(request, "register.html")
+
+
+# ------------------------------------
+# PERFIL
+# ------------------------------------
+@login_required
+def perfil_view(request):
+    profile = request.user.profile
+    return render(request, "perfil.html", {"user": profile})
+
+
+@login_required
+def perfil_editar(request):
+    profile = request.user.profile
+
+    if request.method == "POST":
+        profile.first_name = request.POST["first_name"]
+        profile.last_name = request.POST["last_name"]
+        profile.direccion = request.POST["direccion"]
+        profile.postal_code = request.POST["postal_code"]
+        profile.age = request.POST["age"]
+        profile.telephone_number = request.POST["telephone_number"]
+        profile.save()
+        return redirect("perfil")
+
+    return render(request, "perfil_editar.html", {"user": profile})
+
+
+# ------------------------------------
+# SOBRE NOSOTROS
+# ------------------------------------
+def sobre_nosotros(request):
+    return render(request, "sobre_nosotros.html")

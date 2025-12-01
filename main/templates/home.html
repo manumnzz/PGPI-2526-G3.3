@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ========================= -->
+<!--        PRODUCTOS          -->
+<!-- ========================= -->
+
+<!-- PRODUCTOS DESTACADOS -->
+<section class="productos-destacados-section">
+
+    <h2 class="productos-title">Productos destacados</h2>
+
+    <div class="productos-wrapper">
+
+        <!-- FLECHA IZQUIERDA -->
+        <button class="arrow-btn left" onclick="scrollProducts(-1)">
+            ‹
+        </button>
+
+        <!-- SLIDER -->
+        <div class="productos-slider" id="productosSlider">
+
+            {% for p in products %}
+            <a href="{{ p.url }}" target="_blank" class="producto-card-link">
+                <div class="product-card">
+
+                    {% if p.image %}
+                    <div class="product-image">
+                        <img src="{{ p.image.url }}" alt="{{ p.name }}">
+                    </div>
+                    {% endif %}
+
+                    <h4 class="product-name">{{ p.name }}</h4>
+                    <p class="product-price">€{{ p.price }}</p>
+
+                </div>
+            </a>
+            {% endfor %}
+
+        </div>
+
+        <!-- FLECHA DERECHA -->
+        <button class="arrow-btn right" onclick="scrollProducts(1)">
+            ›
+        </button>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- ========================= -->
+<!--           HERO            -->
+<!-- ========================= -->
+
+<section class="hero-section">
+
+    <div class="hero-content">
+
+        <div class="hero-left">
+            <h1 class="hero-title">
+                El bienestar es<br>
+                una decisión, y<br>
+                empieza hoy
+            </h1>
+
+            <a href="/servicios/" class="hero-btn">
+                RESERVA TU SESIÓN AHORA
+            </a>
+        </div>
+
+        <div class="hero-right">
+            <img src="{% static 'hero.png' %}" alt="hero">
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!--         ESTILOS           -->
+<!-- ========================= -->
+
+<style>
+
+/* ----- Productos ----- */
+
+.productos-destacados-section {
+    padding: 40px 0;
+}
+
+.productos-title {
+    text-align: left;
+    font-size: 34px;
+    font-weight: 700;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    color: #008080;
+}
+
+.productos-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.arrow-btn {
+    background-color: #00A7A7;
+    color: white;
+    font-size: 28px;
+    width: 35px;
+    height: 80px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+}
+
+.arrow-btn:hover {
+    opacity: .8;
+}
+
+.left {
+    margin-right: 10px;
+}
+
+.right {
+    margin-left: 10px;
+}
+
+.productos-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 25px;
+    padding: 10px;
+    width: 100%;
+}
+
+.product-card {
+    min-width: 220px;
+    max-width: 220px;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.product-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.product-name {
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.product-price {
+    color: #1DAA3F;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ----- HERO ----- */
+
+.hero-section {
+    width: 100%;
+    background: linear-gradient(90deg, #00C5C5, #00E0A1);
+    padding: 50px 0;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+}
+
+.hero-title {
+    font-size: 48px;
+    color: white;
+    font-weight: bold;
+}
+
+.hero-btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: white;
+    color: #00A7A7;
+    padding: 12px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.hero-right img {
+    width: 450px;
+    border-radius: 10px;
+}
+.productos-destacados-section {
+    padding: 40px 0;
+}
+
+.productos-title {
+    text-align: left;
+    font-size: 40px;
+    font-weight: 700;
+    margin-left: 40px;
+    margin-bottom: 25px;
+    color: #008080;
+}
+
+.productos-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+/* BOTONES DE NAVEGACIÓN */
+.arrow-btn {
+    background-color: #00A7A7;
+    color: white;
+    font-size: 32px;
+    width: 45px;
+    height: 120px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+.arrow-btn:hover {
+    opacity: .8;
+}
+
+/* SLIDER */
+.productos-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 25px;
+    padding: 10px;
+    width: 100%;
+}
+
+.producto-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-card {
+    min-width: 260px;
+    background: white;
+    border: 2px solid #d7dee2;
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    transition: .2s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.04);
+    border-color: #02A8A8;
+}
+
+.product-image img {
+    width: 100%;
+    height: 240px;
+    object-fit: contain;
+}
+
+.product-name {
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.product-price {
+    color: #1DAA3F;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+
+</style>
+
+
+
+<!-- ========================= -->
+<!--        JAVASCRIPT         -->
+<!-- ========================= -->
+
+<script>
+function scrollProducts(direction) {
+    const slider = document.getElementById("productosSlider");
+    slider.scrollLeft += direction * 350;
+}
+</script>
+
+{% endblock %}

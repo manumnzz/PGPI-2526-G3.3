@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natursur</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+
+    <style>
+
+    .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 40px;
+    border-bottom: 2px solid #e9e9e9;
+    background: white;
+    }
+
+    .logo-small {
+        height: 70px;
+        width: auto;
+    }
+
+    .header-center a {
+        margin: 0 25px;
+        font-size: 22px;
+        font-weight: 600;
+        color: #18A558;
+        text-decoration: none;
+    }
+
+    .header-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-login {
+        background: #04B4C8;
+        padding: 10px 35px;
+        border-radius: 50px;
+        color: white;
+        font-size: 26px;
+        font-weight: bold;
+        text-decoration: none;
+        border: 3px solid #1F3A4A;
+    }
+
+    .signup-link {
+        margin-top: 4px;
+        font-size: 16px;
+        color: #04B4C8;
+        text-decoration: underline;
+    }
+
+        /* Contenedor */
+    .productos-section {
+        padding: 40px 0;
+    }
+
+    /* Título */
+    .titulo-productos {
+        text-align: left;
+        font-size: 40px;
+        font-weight: bold;
+        color: #007f7f;
+        margin-bottom: 25px;
+        padding-left: 20px;
+    }
+
+    /* GRID estilo mockup */
+    .productos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 25px;
+        padding: 0 20px;
+    }
+
+    /* ENLACE general de la card */
+    .producto-card-link {
+        text-decoration: none !important;
+        color: inherit;   
+    }
+
+    /* Tarjeta de producto */
+    .producto-card {
+        background: #ffffff;
+        border: 2px solid #d7dee2;
+        border-radius: 14px;
+        padding: 20px;
+        text-align: center;
+        transition: 0.2s ease-in-out;
+        height: 100%;
+    }
+
+    /* Hover moderno */
+    .producto-card:hover {
+        transform: scale(1.03);
+        border-color: #02A8A8;
+    }
+
+    /* Imagen */
+    .producto-imagen {
+        width: 100%;
+        height: 260px;
+        object-fit: contain;
+        margin-bottom: 15px;
+    }
+
+    /* Nombre */
+    .producto-nombre {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #444;
+    }
+
+    /* Precio */
+    .producto-precio {
+        font-size: 22px;
+        font-weight: bold;
+        color: #00A859;
+        margin-bottom: 10px;
+    }
+
+
+
+    </style>
+
+</head>
+
+<body>
+
+{% load static %}
+
+<header class="main-header">
+    <div class="header-left">
+        <img src="/static/natursur_icon.png" class="logo-small">
+    </div>
+
+    <nav class="header-center">
+        <a href="/">Inicio</a>
+        <a href="/productos/">Productos</a>
+        <a href="/servicios/">Servicios</a>
+        <a href="/sobre-nosotros/">Sobre nosotros</a>
+    </nav>
+
+    <div class="header-right">
+        <a href="/login/" class="btn-login">Login</a>
+        <a href="/register/" class="signup-link">sign up!</a>
+    </div>
+</header>
+
+
+
+
+<!-- ⬇️ AQUI FALTABA ESTO -->
+{% block content %}
+{% endblock %}
+<!-- ⬆️ ESTO ES LO QUE HACIA FALTA -->
+
+<footer class="main-footer">
+
+    <div class="footer-content container">
+
+        <!-- COLUMNA 1 – LOGO + FRASE -->
+        <div class="footer-col">
+            <img src="{% static 'natursur_icon.png' %}" class="footer-logo" alt="Natursur">
+
+            <p class="footer-quote">
+                "Cuerpo, mente y alimentación: cuando los tres están en equilibrio, todo cambia."
+            </p>
+        </div>
+
+        <!-- COLUMNA 2 – MENÚ -->
+        <div class="footer-col">
+            <h3 class="footer-title">Menú</h3>
+
+            <ul class="footer-menu">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/servicios/">Servicios</a></li>
+                <li><a href="/sobre-nosotros/">Sobre nosotros</a></li>
+            </ul>
+        </div>
+
+        <!-- COLUMNA 3 – CONTACTO + REDES -->
+        <div class="footer-col">
+            <h3 class="footer-title">Contacto</h3>
+
+            <p class="footer-info">📍 Av. Santa Lucía, 6241500 Alcalá de Guadaíra, Sevilla</p>
+            <p class="footer-info">📞 691 355 682</p>
+
+            <div class="footer-socials">
+
+                <a href="https://www.facebook.com/natursur" target="_blank">
+                    <div class="social-icon">
+                        <img src="{% static 'icons/facebook.png' %}" alt="Facebook">
+                    </div>
+                </a>
+
+                <a href="https://www.instagram.com/yosoyescalona/?hl=es" target="_blank">
+                    <div class="social-icon">
+                        <img src="{% static 'icons/instagram.png' %}" alt="Instagram">
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/@natursur" target="_blank">
+                    <div class="social-icon">
+                        <img src="{% static 'icons/youtube.png' %}" alt="YouTube">
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        Copyright © 2025 Natursur. Todos los derechos reservados.
+    </div>
+
+</footer>
+
+
+
+<style>
+
+.social-icon img {
+    width: 22px !important;
+    height: 22px !important;
+    object-fit: contain;
+}
+
+
+.main-footer {
+    background: #064A4A;
+    color: white;
+    padding: 60px 0 20px;
+    margin-top: 60px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    width: 30%;
+    min-width: 250px;
+}
+
+.footer-logo {
+    width: 160px;
+    margin-bottom: 20px;
+}
+
+.footer-quote {
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.footer-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.footer-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-menu li {
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 6px;
+    width: 180px;
+}
+
+.footer-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.footer-menu a:hover {
+    opacity: 0.7;
+}
+
+.footer-info {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #00A7A7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: white;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+    border-top: 1px solid rgba(255,255,255,0.25);
+}
+
+</style>
+
+
+</body>
+</html>

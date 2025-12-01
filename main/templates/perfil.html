@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="container py-5" style="max-width:600px;">
+
+    <h2 class="mb-4">Perfil</h2>
+
+    <div class="card p-4 shadow">
+        <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+        <p><strong>{{ user.direccion }}</strong></p>
+        <p>{{ user.postal_code }}</p>
+        <p>Edad: {{ user.age }}</p>
+        <p>Tel: {{ user.telephone_number }}</p>
+
+        <a href="/perfil/editar/" class="btn btn-primary mt-3">Editar</a>
+    </div>
+
+</section>
+
+{% endblock %}

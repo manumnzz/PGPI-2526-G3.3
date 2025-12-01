@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="container py-5" style="max-width:520px;">
+
+    <div class="card p-4 shadow" style="background:#02A8A8; color:white;">
+        <h3 class="text-center mb-4">Register</h3>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Nombre</label>
+            <input name="first_name" class="form-control mb-2">
+
+            <label>Apellidos</label>
+            <input name="last_name" class="form-control mb-2">
+
+            <label>Dirección</label>
+            <input name="direccion" class="form-control mb-2">
+
+            <label>Código Postal</label>
+            <input name="postal_code" class="form-control mb-2">
+
+            <label>Edad</label>
+            <input name="age" type="number" class="form-control mb-2">
+
+            <label>Número de Contacto</label>
+            <input name="telephone_number" class="form-control mb-2">
+
+            <label>Usuario</label>
+            <input name="username" class="form-control mb-2">
+
+            <label>Correo</label>
+            <input name="mail" type="email" class="form-control mb-2">
+
+            <label>Contraseña</label>
+            <input name="password" type="password" class="form-control mb-4">
+
+            <button class="btn btn-light w-100">¡Registrarme!</button>
+        </form>
+    </div>
+
+</section>
+
+{% endblock %}

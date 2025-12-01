@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="container py-5">
+
+    <h2 class="mb-3">{{ service.title }}</h2>
+    <h5 class="text-muted">{{ service.subtitle }}</h5>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <img src="{{ service.image.url }}" class="img-fluid rounded shadow">
+        </div>
+        <div class="col-md-6">
+            <p>{{ service.description }}</p>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <h3 class="text-center mb-4">Tarifas</h3>
+
+    <div class="row g-4">
+        {% for t in tarifas %}
+        <div class="col-md-4">
+            <div class="card shadow-sm p-4 text-center">
+                <h4>{{ t.title }}</h4>
+                <p class="text-success fs-2">€{{ t.price }}</p>
+
+                {% if t.description %}
+                <p>{{ t.description }}</p>
+                {% endif %}
+
+                <a href="/citas/crear/{{ service.id }}/{{ t.id }}/" class="btn btn-primary mt-3">
+                    RESERVAR
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}
