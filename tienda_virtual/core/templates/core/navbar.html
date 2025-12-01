@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'core/navbar.css' %}">
+<header class="top-strip">
+    <div class="brand">
+        <img src="{% static 'core/logo.png' %}" alt="Logo" class="logo">
+    </div>
+    <div class="motto"></div>
+    <nav class="top-links">
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'products:list' %}">Productos</a>
+        <a href="{% url 'appointments:book' %}">Servicios</a>
+        <a href="{% url 'social:links' %}">Sobre nosotros</a>
+        <a href="{% url 'login' %}">Login</a>
+    </nav>
+</header>

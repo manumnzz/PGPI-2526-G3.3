@@ -1,0 +1,38 @@
+{% extends "core/auth_base.html" %}
+{% block title %}Login - Natursur{% endblock %}
+{% block content %}
+    <div class="form-header">
+        <h1>Login</h1>
+    </div>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        <div class="field">
+            {{ form.username }}
+        </div>
+        <div class="field">
+            {{ form.password }}
+        </div>
+        <div class="actions">
+            <label class="remember">
+                <input type="checkbox" name="remember" disabled>
+                Recordarme
+            </label>
+            <a class="link-muted" href="#">¿Has olvidado tu contraseña?</a>
+        </div>
+        <button type="submit" class="primary-btn">Iniciar Sesión</button>
+    </form>
+
+    <div class="bottom-links">
+        <p>¿No tienes cuenta? <a href="{% url 'register_user' %}">Regístrate</a></p>
+        <p>Crear cuenta de administrador <a href="{% url 'register_admin' %}">aquí</a></p>
+    </div>
+{% endblock %}

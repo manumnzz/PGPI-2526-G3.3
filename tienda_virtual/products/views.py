@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def product_list(request):
+    """Vista placeholder de listado de productos."""
+    return render(request, "products/list.html")

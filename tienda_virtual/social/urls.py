@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name = "social"
+
 urlpatterns = [
-    # Social media-related URLs will go here
+    path("links/", views.links, name="links"),
 ]

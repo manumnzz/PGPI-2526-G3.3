@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def index(request):
+    """Vista placeholder para chatbot."""
+    return render(request, "chatbot/index.html")

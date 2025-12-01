@@ -1,0 +1,32 @@
+{% extends "core/auth_base.html" %}
+{% block title %}Registro Admin - Natursur{% endblock %}
+{% block content %}
+    <div class="form-header">
+        <h1>Registro Admin</h1>
+        <span class="badge">Administrador</span>
+    </div>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        <div class="field">{{ form.username }}</div>
+        <div class="field">{{ form.direccion }}</div>
+        <div class="field">{{ form.codigo_postal }}</div>
+        <div class="field">{{ form.fecha_nacimiento }}</div>
+        <div class="field">{{ form.telefono }}</div>
+        <div class="field">{{ form.password }}</div>
+        <p class="hint">Esta cuenta tendrá acceso al panel y a la gestión interna.</p>
+        <button type="submit" class="primary-btn">Crear administrador</button>
+    </form>
+
+    <div class="bottom-links">
+        <p>Volver al <a href="{% url 'login' %}">login</a></p>
+    </div>
+{% endblock %}
