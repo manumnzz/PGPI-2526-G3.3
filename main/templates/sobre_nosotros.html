@@ -124,32 +124,73 @@
 
 
 <!-- ========================= -->
-<!--        TESTIMONIOS        -->
+<!--      OPINIONES REALES     -->
 <!-- ========================= -->
 
-<section class="testimonios-section">
-    <h2 class="testimonios-title">Opiniones de nuestros clientes</h2>
+<section class="opiniones-section">
+    <h2 class="opiniones-title">Opiniones de nuestros clientes</h2>
+    <p class="opiniones-sub">
+        Estas son algunas de las reseñas reales que los clientes han dejado sobre Natursur en Google.
+    </p>
 
-    <div class="testimonios-grid">
-        <article class="test-card">
-            <div class="test-nombre">Antonio Benabal Muela</div>
-            <div class="test-fecha">Reseña en Google · 2024</div>
-            <p class="test-texto">
-                Gran profesional con experiencia y muchos conocimientos. Lo recomiendo para todo aquel que necesite
-                un buen osteópata y asesor en nutrición. He notado un cambio enorme desde que empecé a trabajar con él.
+    <div class="opiniones-grid">
+        <!-- Opinión 1 -->
+        <article class="opinion-card">
+            <div class="opinion-header">
+                <div>
+                    <div class="opinion-nombre">R C</div>
+                    <div class="opinion-fecha">Reseña en Google · hace un mes</div>
+                </div>
+                <div class="opinion-estrellas">★★★★★</div>
+            </div>
+            <p class="opinion-texto">
+                He recibido una sesión de una hora de Masaje Profundo y Revitalizante. Mi experiencia ha sido muy positiva ya que mi espalda estaba algo sobrecargada y Fernando que es un buen profesional ha sabido liberarme de esa tensión muscular que muchas veces tenemos. Lo recomiendo. Gracias
             </p>
         </article>
 
-        <article class="test-card">
-            <div class="test-nombre">Elvira Muela López</div>
-            <div class="test-fecha">Reseña en Google · 2024</div>
-            <p class="test-texto">
-                La variedad de técnicas y el trato cercano han hecho que mejore tanto física como mentalmente.
-                Lo recomiendo completamente, se nota que le apasiona lo que hace.
+        <!-- Opinión 2 -->
+        <article class="opinion-card">
+            <div class="opinion-header">
+                <div>
+                    <div class="opinion-nombre">Belen Diaz</div>
+                    <div class="opinion-fecha">Reseña en Google · hace 3 meses</div>
+                </div>
+                <div class="opinion-estrellas">★★★★★</div>
+            </div>
+            <p class="opinion-texto">
+                El trato impecable, te hace sentir cómoda, que para mí era importante para poder relajarme.
+                Es un gran profesional.
+                Añadir que llevaba casi tres semanas con dolor lumbar y el ciático pinzado y desapareció todo y tras una semana sigo bien.
+                Salí como nueva
+                Totalmente recomendable y repetiré seguro
+            </p>
+        </article>
+
+        <!-- Opinión 3 (opcional) -->
+        <article class="opinion-card">
+            <div class="opinion-header">
+                <div>
+                    <div class="opinion-nombre">SILVIA Martínez Moreno</div>
+                    <div class="opinion-fecha">Reseña en Google · hacec 2 semanas</div>
+                </div>
+                <div class="opinion-estrellas">★★★★★</div>
+            </div>
+            <p class="opinion-texto">
+                Fernando es maravilloso,  profesional al 100%, sabe lo que hace y lo hace muy bien.
+                Gracias, por hacerme sentir mejor con mis dolores de espalda, bueno, y del alma.
+                Lo recomiendo al 100%
             </p>
         </article>
     </div>
+
+    <p class="opiniones-fuente">
+        Fuente: Reseñas públicas de <strong>Google Maps · Natursur</strong>
+    </p>
 </section>
+
+
+
+
 
 
 <!-- ========================= -->
@@ -163,15 +204,13 @@
 /* Layout general de las secciones */
 .sobre-section,
 .instagram-section,
-.libro-section,
-.testimonios-section {
+.libro-section{
     padding: 40px 0;
 }
 
 .sobre-section,
 .instagram-section,
-.libro-section,
-.testimonios-section {
+.libro-section{
     max-width: 1200px;
     margin: 0 auto;
     padding-inline: 40px;
@@ -362,41 +401,74 @@
     margin-bottom: 8px;
 }
 
-/* ---- TESTIMONIOS ---- */
+/* ---- OPINIONES REALES (GOOGLE) ---- */
 
-.testimonios-title {
+.opiniones-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 40px 60px;
+}
+
+.opiniones-title {
     font-size: 26px;
+    margin-bottom: 10px;
+    color: #004f4f;
+}
+
+.opiniones-sub {
+    font-size: 14px;
+    color: #45646b;
     margin-bottom: 18px;
 }
 
-.testimonios-grid {
+.opiniones-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 18px;
 }
 
-.test-card {
+.opinion-card {
     background-color: #ffffff;
     border-radius: 10px;
     padding: 16px 18px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
-.test-nombre {
+.opinion-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.opinion-nombre {
     font-size: 15px;
     font-weight: 600;
     margin-bottom: 2px;
+    color: #10424b;
 }
 
-.test-fecha {
+.opinion-fecha {
     font-size: 12px;
     color: #7a9198;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
-.test-texto {
+.opinion-estrellas {
+    font-size: 14px;
+    color: #f4b400; /* amarillo tipo estrellas Google */
+}
+
+.opinion-texto {
     font-size: 14px;
     color: #3f5a61;
+    line-height: 1.5;
+}
+
+.opiniones-fuente {
+    font-size: 12px;
+    color: #7a9198;
+    margin-top: 12px;
 }
 
 /* ---- RESPONSIVE ---- */
