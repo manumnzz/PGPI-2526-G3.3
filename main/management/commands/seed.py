@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
-from main.models import Service, Tarifa
+from django.contrib.auth.models import User as DjangoUser
+from main.models import Service, Tarifa, User
 
 class Command(BaseCommand):
     help = "Seed database with initial Natursur data"
@@ -88,3 +89,30 @@ class Command(BaseCommand):
             )
 
         print("✔ Tarifas creadas")
+
+    def create_test_user(self):
+
+        if DjangoUser.objects.filter(username="user1").exists():
+            print("✔ Usuario de prueba ya existe")
+            return
+
+        django_user = DjangoUser.objects.create_user(
+            username="user1",
+            email="user1@example.com",
+            password="user123" 
+        )
+
+        User.objects.create(
+            django_user=django_user,
+            first_name="user",
+            last_name="1",
+            username="user1",
+            mail="user1@example.com",
+            direccion="Calle Ejemplo 123",
+            postal_code="41001",
+            age=25,
+            telephone_number="600123123",
+            password=django_user.password 
+        )
+
+        print("✔ Usuario de prueba creado")
