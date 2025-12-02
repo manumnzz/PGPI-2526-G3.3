@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User as DjangoUser
 
 from main.models import Service, Product, Tarifa, Cita, User as Profile
+from django.db import transaction
 
 
 # ------------------------------------
@@ -152,28 +153,49 @@ def register_view(request):
     if request.method == "POST":
         data = request.POST
 
-        # Crear usuario Django
-        django_user = DjangoUser.objects.create_user(
-            username=data["username"],
-            password=data["password"],
-            email=data["mail"],
-            first_name=data["first_name"],
-            last_name=data["last_name"],
-        )
+        errors = {}
+        required_fields = [
+            "username", "password", "mail", "first_name", "last_name",
+            "direccion", "postal_code", "age", "telephone_number"
+        ]
+        for f in required_fields:
+            if not data.get(f):
+                errors[f] = "Este campo es obligatorio"
 
-        # Crear perfil asociado
-        Profile.objects.create(
-            django_user=django_user,
-            first_name=data["first_name"],
-            last_name=data["last_name"],
-            username=data["username"],
-            mail=data["mail"],
-            direccion=data["direccion"],
-            postal_code=data["postal_code"],
-            age=data["age"],
-            telephone_number=data["telephone_number"],
-            password=data["password"],
-        )
+        # Validaciones de duplicado
+        if DjangoUser.objects.filter(username=data.get("username")).exists():
+            errors["username"] = "Este usuario ya existe"
+        if DjangoUser.objects.filter(email=data.get("mail")).exists():
+            errors["mail"] = "Este correo ya está en uso"
+
+        if errors:
+            return render(request, "register.html", {"errors": errors, "data": data})
+
+        try:
+            with transaction.atomic():
+                django_user = DjangoUser.objects.create_user(
+                    username=data["username"],
+                    password=data["password"],
+                    email=data["mail"],
+                    first_name=data["first_name"],
+                    last_name=data["last_name"],
+                )
+
+                # No guardar password en el perfil (se guarda hasheada en auth_user)
+                Profile.objects.create(
+                    django_user=django_user,
+                    first_name=data["first_name"],
+                    last_name=data["last_name"],
+                    username=data["username"],
+                    mail=data["mail"],
+                    direccion=data["direccion"],
+                    postal_code=data["postal_code"],
+                    age=data["age"],
+                    telephone_number=data["telephone_number"],
+                )
+        except Exception as e:
+            errors["global"] = "No se pudo registrar el usuario."
+            return render(request, "register.html", {"errors": errors, "data": data})
 
         login(request, django_user)
         return redirect("home")

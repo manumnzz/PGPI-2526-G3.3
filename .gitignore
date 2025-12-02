@@ -1,8 +1,13 @@
 # Archivos y carpetas generadas por Python
-_pycache_/
+__pycache__/
+*/__pycache__/
 *.pyc
 
 # Ignorar el entorno virtual completo
 # (Reemplaza 'venv' si tu entorno se llama diferente)
 venv/
 .venv/
+
+# Bases de datos SQLite (cada desarrollador tiene la suya)
+db.sqlite3
+*.sqlite3

@@ -6,36 +6,40 @@
     <div class="card p-4 shadow" style="background:#02A8A8; color:white;">
         <h3 class="text-center mb-4">Register</h3>
 
-        <form method="POST">
+        <form method="POST" action="{% url 'register' %}">
             {% csrf_token %}
 
             <label>Nombre</label>
-            <input name="first_name" class="form-control mb-2">
+            <input name="first_name" class="form-control mb-2" value="{{ data.first_name|default:'' }}">
 
             <label>Apellidos</label>
-            <input name="last_name" class="form-control mb-2">
+            <input name="last_name" class="form-control mb-2" value="{{ data.last_name|default:'' }}">
 
             <label>Dirección</label>
-            <input name="direccion" class="form-control mb-2">
+            <input name="direccion" class="form-control mb-2" value="{{ data.direccion|default:'' }}">
 
             <label>Código Postal</label>
-            <input name="postal_code" class="form-control mb-2">
+            <input name="postal_code" class="form-control mb-2" value="{{ data.postal_code|default:'' }}">
 
             <label>Edad</label>
-            <input name="age" type="number" class="form-control mb-2">
+            <input name="age" type="number" class="form-control mb-2" value="{{ data.age|default:'' }}">
 
             <label>Número de Contacto</label>
-            <input name="telephone_number" class="form-control mb-2">
+            <input name="telephone_number" class="form-control mb-2" value="{{ data.telephone_number|default:'' }}">
 
             <label>Usuario</label>
-            <input name="username" class="form-control mb-2">
+            <input name="username" class="form-control mb-2" value="{{ data.username|default:'' }}">
+            {% if errors.username %}<small style="color:#ffdcdc;">{{ errors.username }}</small>{% endif %}
 
             <label>Correo</label>
-            <input name="mail" type="email" class="form-control mb-2">
+            <input name="mail" type="email" class="form-control mb-2" value="{{ data.mail|default:'' }}">
+            {% if errors.mail %}<small style="color:#ffdcdc;">{{ errors.mail }}</small>{% endif %}
 
             <label>Contraseña</label>
             <input name="password" type="password" class="form-control mb-4">
+            {% if errors.password %}<small style="color:#ffdcdc;">{{ errors.password }}</small>{% endif %}
 
+            {% if errors.global %}<div style="color:#ffdcdc" class="mb-2">{{ errors.global }}</div>{% endif %}
             <button class="btn btn-light w-100">¡Registrarme!</button>
         </form>
     </div>
