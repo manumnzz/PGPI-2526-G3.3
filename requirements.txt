@@ -1,0 +1,18 @@
+# --- CORE DJANGO ---
+Django==5.0.3
+
+# --- MANEJO DE IMÁGENES (OBLIGATORIO PARA ImageField) ---
+Pillow==10.2.0
+
+# --- SCRAPING ---
+requests==2.31.0
+beautifulsoup4==4.12.3
+
+# --- ENTORNO / VARIABLES DE ENTORNO ---
+python-dotenv==1.0.1
+
+# --- SI USAS MYSQL / MARIADB (si no, bórralo) ---
+# mysqlclient==2.2.0
+
+# --- SI USAS DJANGO-DEBUG-TOOLBAR EN DESARROLLO ---
+# django-debug-toolbar==4.2.0
