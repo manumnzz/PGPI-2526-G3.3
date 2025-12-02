@@ -1,32 +1,431 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
 
-<section class="container py-5">
+<!-- ========================= -->
+<!--      SOBRE NOSOTROS       -->
+<!-- ========================= -->
 
-    <h2 class="text-center mb-4">Sobre Nosotros</h2>
+<section class="sobre-section">
 
-    <p class="lead text-center">
-        Más de 25 años de experiencia en técnicas manuales, osteopatía y
-        asesoramiento nutricional. Descubre cómo mejorar tu bienestar.
-    </p>
+    <div class="sobre-grid">
+        <div class="sobre-texto">
+            <h1 class="sobre-title-main">Sobre Nosotros!</h1>
+            <p class="sobre-subtitulo">
+                Más de 25 años de experiencia en técnicas manuales, osteopatía y asesoramiento nutricional.
+                Descubre cómo mejorar tu bienestar.
+            </p>
 
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <img src="/static/about.jpg" class="img-fluid rounded shadow">
+            <div class="sobre-bloque-label">SOBRE MÍ</div>
+            <h2 class="sobre-title">Un enfoque integral para tu bienestar total</h2>
+            <p class="sobre-parrafo">
+                Soy Fernando Escalona y llevo más de 25 años ayudando a las personas a mejorar su bienestar
+                físico y emocional. Creo en un enfoque integral: el cuerpo, la mente y la alimentación
+                trabajando juntos para lograr un equilibrio real.
+            </p>
+            <p class="sobre-parrafo">
+                No se trata sólo de aliviar un dolor o seguir una dieta, sino de transformar tu estilo de vida
+                desde la raíz.
+            </p>
+
+            <a href="/servicios/" class="btn-primario">Conoce mis servicios</a>
         </div>
 
-        <div class="col-md-6">
-            <h3 class="mb-3">Descubre cómo llevar una vida sana con Natursur</h3>
-
-            <ul>
-                <li>Los 5 mejores trucos para que TÚ estés en la mejor forma de TU vida</li>
-                <li>Por qué no consigues el cuerpo que deseas este año</li>
-                <li>Cómo crear hábitos saludables que duren</li>
-                <li>Y mucho más…</li>
-            </ul>
+        <div class="sobre-imagen">
+            <img src="{% static 'sobre_nosotros/experto_bienestar.png' %}"
+                alt="Experto en Bienestar" class="sobre-imagen-principal">
         </div>
     </div>
 
 </section>
+
+
+<!-- ========================= -->
+<!--         INSTAGRAM         -->
+<!-- ========================= -->
+
+<section class="instagram-section" id="instagram">
+    <h2 class="instagram-title">Sígueme en Instagram</h2>
+    <p class="instagram-sub">
+        Aquí se mostrará el contenido en tiempo real con sus publicaciones más recientes.
+    </p>
+
+    <div class="instagram-grid">
+        <!-- Reel 1 -->
+        <a class="ig-item"
+           href="https://www.instagram.com/reel/DI9CWpatCN6/?hl=es"
+           target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'sobre_nosotros/reel1.png' %}" alt="Reel 1 de Instagram">
+            <span>Reel 1</span>
+        </a>
+
+        <!-- Reel 2 -->
+        <a class="ig-item"
+            href="https://www.instagram.com/reel/DRuNZOwDAHa/?hl=es"
+            target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'sobre_nosotros/reel2.png' %}" alt="Reel 2 de Instagram">
+            <span>Reel 2</span>
+        </a>
+
+        <!-- Reel 3 -->
+        <a class="ig-item"
+            href="https://www.instagram.com/reel/DRiWRyRjAzt/?hl=es"
+            target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'sobre_nosotros/reel3.png' %}" alt="Reel 3 de Instagram">
+            <span>Reel 3</span>
+        </a>
+
+        <!-- Reel 4 -->
+        <a class="ig-item"
+            href="https://www.instagram.com/reel/DQ4SHBojEUp/?hl=es"
+            target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'sobre_nosotros/reel4.png' %}" alt="Reel 4 de Instagram">
+            <span>Reel 4</span>
+        </a>
+    </div>
+
+    <a href="https://www.instagram.com/yosoyescalona/"
+        target="_blank" rel="noopener noreferrer"
+        class="btn-secundario">
+        Ver perfil de Instagram
+    </a>
+    <div class="btn-mas-instagram">
+        <a href="https://www.instagram.com/yosoyescalona/reels/"
+            target="_blank" rel="noopener noreferrer"
+            class="btn-secundario">
+            Ver todos los Reels
+        </a>
+    </div>
+</section>
+
+
+<!-- ========================= -->
+<!--        LIBRO / CTA        -->
+<!-- ========================= -->
+
+<section class="libro-section">
+    <div class="libro-grid">
+        <div>
+            <img src="{% static 'sobre_nosotros/Libro_Escalona.png' %}"
+                alt="Libro Natursur" class="libro-img">
+        </div>
+
+        <div class="libro-texto">
+            <h2 class="libro-titulo">Descubre cómo llevar una vida sana con Natursur</h2>
+            <p>Los 5 mejores trucos para que tú estés en la mejor forma de tu vida.</p>
+            <p>Por qué no consigues el cuerpo que deseas este año y qué puedes hacer para cambiarlo.</p>
+            <p>¿Te encanta hacer ejercicio y mantenerte en forma? Entonces este material es para ti.</p>
+            <br>
+            <a href="#" class="btn-primario">Quiero saber más</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= -->
+<!--        TESTIMONIOS        -->
+<!-- ========================= -->
+
+<section class="testimonios-section">
+    <h2 class="testimonios-title">Opiniones de nuestros clientes</h2>
+
+    <div class="testimonios-grid">
+        <article class="test-card">
+            <div class="test-nombre">Antonio Benabal Muela</div>
+            <div class="test-fecha">Reseña en Google · 2024</div>
+            <p class="test-texto">
+                Gran profesional con experiencia y muchos conocimientos. Lo recomiendo para todo aquel que necesite
+                un buen osteópata y asesor en nutrición. He notado un cambio enorme desde que empecé a trabajar con él.
+            </p>
+        </article>
+
+        <article class="test-card">
+            <div class="test-nombre">Elvira Muela López</div>
+            <div class="test-fecha">Reseña en Google · 2024</div>
+            <p class="test-texto">
+                La variedad de técnicas y el trato cercano han hecho que mejore tanto física como mentalmente.
+                Lo recomiendo completamente, se nota que le apasiona lo que hace.
+            </p>
+        </article>
+    </div>
+</section>
+
+
+<!-- ========================= -->
+<!--           ESTILOS         -->
+<!-- ========================= -->
+
+<style>
+/* Igual que en productos: solo estilos del contenido,
+   NO tocamos el header ni el footer de base.html */
+
+/* Layout general de las secciones */
+.sobre-section,
+.instagram-section,
+.libro-section,
+.testimonios-section {
+    padding: 40px 0;
+}
+
+.sobre-section,
+.instagram-section,
+.libro-section,
+.testimonios-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-inline: 40px;
+}
+
+/* ---- SOBRE NOSOTROS ---- */
+
+.sobre-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.sobre-title-main {
+    font-size: 42px;
+    margin-bottom: 8px;
+    color: #004f4f;
+}
+
+.sobre-subtitulo {
+    font-size: 15px;
+    color: #4f6f73;
+    margin-bottom: 24px;
+}
+
+.sobre-bloque-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #00a58b;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.sobre-title {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #003c3c;
+}
+
+.sobre-parrafo {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #345059;
+    margin-bottom: 18px;
+}
+
+.btn-primario {
+    display: inline-block;
+    background-color: #00a58b;
+    color: #ffffff;
+    padding: 10px 24px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-primario:hover {
+    background-color: #008f7a;
+}
+
+.sobre-imagen {
+    position: relative;
+}
+
+.sobre-imagen-principal {
+    width: 120%;
+    border-radius: 30px;
+    object-fit: cover;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.sobre-card {
+    position: absolute;
+    left: 20px;
+    bottom: -24px;
+    background-color: #ffffff;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    max-width: 70%;
+}
+
+.sobre-card-titulo {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.sobre-card-texto {
+    font-size: 12px;
+    color: #45646b;
+}
+
+/* ---- INSTAGRAM ---- */
+
+.instagram-title {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.instagram-sub {
+    font-size: 14px;
+    color: #45646b;
+    margin-bottom: 18px;
+}
+
+.instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.ig-item {
+    background-color: #0e545f;
+    border-radius: 8px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ig-item span {
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    font-size: 11px;
+    color: #ffffff;
+    background-color: rgba(0,0,0,0.4);
+    padding: 3px 6px;
+    border-radius: 999px;
+}
+
+.ig-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.btn-secundario {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #008f7a;
+    padding: 8px 20px;
+    border-radius: 999px;
+    border: 1px solid #008f7a;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.btn-secundario:hover {
+    background-color: #e3f6f5;
+}
+
+.btn-mas-instagram {
+    margin-top: 10px;
+}
+
+/* ---- LIBRO / CTA ---- */
+
+.libro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.libro-img {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 6px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+.libro-titulo {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #004f4f;
+}
+
+.libro-texto p {
+    font-size: 15px;
+    color: #345059;
+    margin-bottom: 8px;
+}
+
+/* ---- TESTIMONIOS ---- */
+
+.testimonios-title {
+    font-size: 26px;
+    margin-bottom: 18px;
+}
+
+.testimonios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.test-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.test-nombre {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.test-fecha {
+    font-size: 12px;
+    color: #7a9198;
+    margin-bottom: 6px;
+}
+
+.test-texto {
+    font-size: 14px;
+    color: #3f5a61;
+}
+
+/* ---- RESPONSIVE ---- */
+
+@media (max-width: 900px) {
+    .sobre-grid,
+    .libro-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sobre-imagen-principal {
+        width: 100%;
+    }
+
+    .sobre-card {
+        position: static;
+        margin-top: 14px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .sobre-section,
+    .instagram-section,
+    .libro-section,
+    .testimonios-section {
+        padding-inline: 20px;
+    }
+}
+</style>
 
 {% endblock %}
