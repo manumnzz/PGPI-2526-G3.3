@@ -1,20 +1,103 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
-<section class="container py-5" style="max-width:600px;">
+<style>
+.form-wrapper {
+    max-width: 650px;
+    margin: 50px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    border: 2px solid #00a7a7;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
 
-    <h2 class="mb-4">Perfil</h2>
+.form-title {
+    text-align: center;
+    color: #007f7f;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
 
-    <div class="card p-4 shadow">
-        <h4>{{ user.first_name }} {{ user.last_name }}</h4>
-        <p><strong>{{ user.direccion }}</strong></p>
-        <p>{{ user.postal_code }}</p>
-        <p>Edad: {{ user.age }}</p>
-        <p>Tel: {{ user.telephone_number }}</p>
+.form-field {
+    margin-bottom: 15px;
+}
 
-        <a href="/perfil/editar/" class="btn btn-primary mt-3">Editar</a>
-    </div>
+.form-field label {
+    font-weight: 600;
+    color: #006060;
+}
 
-</section>
+.form-field input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #00a7a7;
+}
+
+.btn-save {
+    width: 100%;
+    background: #00a7a7;
+    color: white;
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 15px;
+    transition: .2s;
+}
+
+.btn-save:hover {
+    background: #008888;
+    transform: scale(1.03);
+}
+</style>
+
+<div class="form-wrapper">
+    <h2 class="form-title">Editar Perfil</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-field">
+            <label>Nombre</label>
+            <input type="text" name="first_name" value="{{ user.first_name }}">
+        </div>
+
+        <div class="form-field">
+            <label>Apellidos</label>
+            <input type="text" name="last_name" value="{{ user.last_name }}">
+        </div>
+
+        <div class="form-field">
+            <label>Dirección</label>
+            <input type="text" name="direccion" value="{{ user.direccion }}">
+        </div>
+
+        <div class="form-field">
+            <label>Código Postal</label>
+            <input type="text" name="postal_code" value="{{ user.postal_code }}">
+        </div>
+
+        <div class="form-field">
+            <label>Edad</label>
+            <input type="number" name="age" value="{{ user.age }}">
+        </div>
+
+        <div class="form-field">
+            <label>Teléfono</label>
+            <input type="text" name="telephone_number" value="{{ user.telephone_number }}">
+        </div>
+
+        <div class="form-field">
+            <label>Foto de perfil</label>
+            <input type="file" name="image">
+        </div>
+
+        <button class="btn-save">Guardar cambios</button>
+    </form>
+</div>
 
 {% endblock %}

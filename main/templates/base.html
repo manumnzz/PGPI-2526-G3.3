@@ -9,13 +9,17 @@
 
     <style>
 
+    /* ========================= */
+    /* HEADER */
+    /* ========================= */
+
     .main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 40px;
-    border-bottom: 2px solid #e9e9e9;
-    background: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 40px;
+        border-bottom: 2px solid #e9e9e9;
+        background: white;
     }
 
     .logo-small {
@@ -31,101 +35,188 @@
         text-decoration: none;
     }
 
-    .header-right {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .header-center a:hover {
+        opacity: 0.7;
     }
 
-    .btn-login {
-        background: #04B4C8;
-        padding: 10px 35px;
-        border-radius: 50px;
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .btn-login-pro {
+        background: #018A8A;
+        border-radius: 30px;
+        padding: 8px 26px;
+        border: none;
         color: white;
-        font-size: 26px;
-        font-weight: bold;
+        font-size: 20px;
+        font-weight: 600;
         text-decoration: none;
-        border: 3px solid #1F3A4A;
+        transition: 0.2s ease-in-out;
+    }
+
+    .btn-login-pro:hover {
+        background: #026868;
+        transform: scale(1.03);
     }
 
     .signup-link {
-        margin-top: 4px;
         font-size: 16px;
         color: #04B4C8;
         text-decoration: underline;
     }
 
-        /* Contenedor */
-    .productos-section {
-        padding: 40px 0;
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
     }
 
-    /* Título */
-    .titulo-productos {
-        text-align: left;
-        font-size: 40px;
-        font-weight: bold;
-        color: #007f7f;
-        margin-bottom: 25px;
-        padding-left: 20px;
+    .user-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #02A8A8;
     }
 
-    /* GRID estilo mockup */
-    .productos-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 25px;
-        padding: 0 20px;
-    }
-
-    /* ENLACE general de la card */
-    .producto-card-link {
-        text-decoration: none !important;
-        color: inherit;   
-    }
-
-    /* Tarjeta de producto */
-    .producto-card {
-        background: #ffffff;
-        border: 2px solid #d7dee2;
-        border-radius: 14px;
-        padding: 20px;
-        text-align: center;
-        transition: 0.2s ease-in-out;
-        height: 100%;
-    }
-
-    /* Hover moderno */
-    .producto-card:hover {
-        transform: scale(1.03);
-        border-color: #02A8A8;
-    }
-
-    /* Imagen */
-    .producto-imagen {
-        width: 100%;
-        height: 260px;
-        object-fit: contain;
-        margin-bottom: 15px;
-    }
-
-    /* Nombre */
-    .producto-nombre {
-        font-size: 18px;
+    .user-name {
+        font-size: 20px;
+        color: #064A4A;
         font-weight: 600;
-        margin-bottom: 8px;
-        color: #444;
     }
 
-    /* Precio */
-    .producto-precio {
+    .user-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: white;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        min-width: 180px;
+        padding: 10px 0;
+        z-index: 1000;
+        text-align: left;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .user-dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 12px 18px;
+        color: #064A4A;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .dropdown-menu a:hover {
+        background: #e3f7f7;
+    }
+
+    /* ========================= */
+    /* FOOTER ARREGLADO */
+    /* ========================= */
+
+    .main-footer {
+        background: #064A4A;
+        color: white;
+        padding: 60px 0 20px;
+        margin-top: 60px;
+        font-family: Arial, sans-serif;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .footer-col {
+        width: 30%;
+        min-width: 250px;
+    }
+
+    .footer-logo {
+        width: 160px;
+        margin-bottom: 20px;
+    }
+
+    .footer-quote {
+        font-style: italic;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .footer-title {
         font-size: 22px;
+        margin-bottom: 20px;
         font-weight: bold;
-        color: #00A859;
-        margin-bottom: 10px;
     }
 
+    .footer-menu {
+        list-style: none;
+        padding: 0;
+    }
 
+    .footer-menu li {
+        margin-bottom: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.25);
+        padding-bottom: 6px;
+        width: 180px;
+    }
+
+    .footer-menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .footer-info {
+        margin-bottom: 12px;
+        font-size: 16px;
+    }
+
+    .footer-socials {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: #00A7A7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .social-icon img {
+        width: 22px !important;
+        height: 22px !important;
+        object-fit: contain;
+    }
+
+    .footer-bottom {
+        margin-top: 40px;
+        text-align: center;
+        padding-top: 20px;
+        font-size: 14px;
+        border-top: 1px solid rgba(255,255,255,0.25);
+    }
 
     </style>
 
@@ -137,7 +228,7 @@
 
 <header class="main-header">
     <div class="header-left">
-        <img src="/static/natursur_icon.png" class="logo-small">
+        <img src="{% static 'natursur_icon.png' %}" class="logo-small">
     </div>
 
     <nav class="header-center">
@@ -148,36 +239,50 @@
     </nav>
 
     <div class="header-right">
-        <a href="/login/" class="btn-login">Login</a>
-        <a href="/register/" class="signup-link">sign up!</a>
+
+        {% if request.user.is_authenticated %}
+
+        <div class="user-dropdown">
+            <div class="user-info">
+                {% if request.user.profile.image %}
+                    <img src="{{ request.user.profile.image.url }}" class="user-avatar">
+                {% else %}
+                    <img src="{% static 'default_user.png' %}" class="user-avatar">
+                {% endif %}
+                <span class="user-name">{{ request.user.username }}</span>
+            </div>
+
+            <div class="dropdown-menu">
+                <a href="/perfil/">Mi perfil</a>
+                <a href="/logout/">Cerrar sesión</a>
+            </div>
+        </div>
+
+        {% else %}
+            <a href="/login/" class="btn-login-pro">Acceder</a>
+            <a href="/register/" class="signup-link">Crear cuenta</a>
+        {% endif %}
+
     </div>
 </header>
 
 
-
-
-<!-- ⬇️ AQUI FALTABA ESTO -->
 {% block content %}
 {% endblock %}
-<!-- ⬆️ ESTO ES LO QUE HACIA FALTA -->
+
 
 <footer class="main-footer">
-
     <div class="footer-content container">
 
-        <!-- COLUMNA 1 – LOGO + FRASE -->
         <div class="footer-col">
-            <img src="{% static 'natursur_icon.png' %}" class="footer-logo" alt="Natursur">
-
+            <img src="{% static 'natursur_icon.png' %}" class="footer-logo">
             <p class="footer-quote">
                 "Cuerpo, mente y alimentación: cuando los tres están en equilibrio, todo cambia."
             </p>
         </div>
 
-        <!-- COLUMNA 2 – MENÚ -->
         <div class="footer-col">
             <h3 class="footer-title">Menú</h3>
-
             <ul class="footer-menu">
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/servicios/">Servicios</a></li>
@@ -185,147 +290,38 @@
             </ul>
         </div>
 
-        <!-- COLUMNA 3 – CONTACTO + REDES -->
         <div class="footer-col">
             <h3 class="footer-title">Contacto</h3>
-
             <p class="footer-info">📍 Av. Santa Lucía, 6241500 Alcalá de Guadaíra, Sevilla</p>
             <p class="footer-info">📞 691 355 682</p>
 
             <div class="footer-socials">
-
-                <a href="https://www.facebook.com/natursur" target="_blank">
+                <a target="_blank">
                     <div class="social-icon">
-                        <img src="{% static 'icons/facebook.png' %}" alt="Facebook">
+                        <img src="{% static 'icons/facebook.png' %}">
                     </div>
                 </a>
 
-                <a href="https://www.instagram.com/yosoyescalona/?hl=es" target="_blank">
+                <a target="_blank">
                     <div class="social-icon">
-                        <img src="{% static 'icons/instagram.png' %}" alt="Instagram">
+                        <img src="{% static 'icons/instagram.png' %}">
                     </div>
                 </a>
 
-                <a href="https://www.youtube.com/@natursur" target="_blank">
+                <a target="_blank">
                     <div class="social-icon">
-                        <img src="{% static 'icons/youtube.png' %}" alt="YouTube">
+                        <img src="{% static 'icons/youtube.png' %}">
                     </div>
                 </a>
-
             </div>
-
         </div>
 
     </div>
 
     <div class="footer-bottom">
-        Copyright © 2025 Natursur. Todos los derechos reservados.
+        Copyright © 2025 Natursur.
     </div>
-
 </footer>
-
-
-
-<style>
-
-.social-icon img {
-    width: 22px !important;
-    height: 22px !important;
-    object-fit: contain;
-}
-
-
-.main-footer {
-    background: #064A4A;
-    color: white;
-    padding: 60px 0 20px;
-    margin-top: 60px;
-    font-family: Arial, sans-serif;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.footer-col {
-    width: 30%;
-    min-width: 250px;
-}
-
-.footer-logo {
-    width: 160px;
-    margin-bottom: 20px;
-}
-
-.footer-quote {
-    font-style: italic;
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-.footer-title {
-    font-size: 22px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.footer-menu {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-menu li {
-    margin-bottom: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.25);
-    padding-bottom: 6px;
-    width: 180px;
-}
-
-.footer-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.footer-menu a:hover {
-    opacity: 0.7;
-}
-
-.footer-info {
-    margin-bottom: 12px;
-    font-size: 16px;
-}
-
-.footer-socials {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: #00A7A7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    color: white;
-}
-
-.footer-bottom {
-    margin-top: 40px;
-    text-align: center;
-    padding-top: 20px;
-    font-size: 14px;
-    border-top: 1px solid rgba(255,255,255,0.25);
-}
-
-</style>
-
 
 </body>
 </html>

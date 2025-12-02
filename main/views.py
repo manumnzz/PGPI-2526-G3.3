@@ -158,6 +158,13 @@ def register_view(request):
 
     return render(request, "register.html")
 
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logout_view(request):
+    logout(request)
+    return redirect("/")
+
 
 # ------------------------------------
 # PERFIL
@@ -168,19 +175,27 @@ def perfil_view(request):
     return render(request, "perfil.html", {"user": profile})
 
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
 @login_required
 def perfil_editar(request):
     profile = request.user.profile
 
     if request.method == "POST":
-        profile.first_name = request.POST["first_name"]
-        profile.last_name = request.POST["last_name"]
-        profile.direccion = request.POST["direccion"]
-        profile.postal_code = request.POST["postal_code"]
-        profile.age = request.POST["age"]
-        profile.telephone_number = request.POST["telephone_number"]
+        profile.first_name = request.POST.get("first_name")
+        profile.last_name = request.POST.get("last_name")
+        profile.direccion = request.POST.get("direccion")
+        profile.postal_code = request.POST.get("postal_code")
+        profile.age = request.POST.get("age")
+        profile.telephone_number = request.POST.get("telephone_number")
+
+        # guardar imagen si existe
+        if "image" in request.FILES:
+            profile.image = request.FILES["image"]
+
         profile.save()
-        return redirect("perfil")
+        return redirect("/perfil/")
 
     return render(request, "perfil_editar.html", {"user": profile})
 
