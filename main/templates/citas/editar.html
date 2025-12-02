@@ -1,25 +1,120 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
-<section class="container py-5">
+<style>
 
-    <h2 class="text-center mb-4">Editar Cita</h2>
+.editar-wrapper {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    border: 2px solid #00a7a7;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
 
-    <div class="card p-4 shadow">
-        <h4>{{ cita.service.title }}</h4>
-        <p class="text-muted">{{ cita.tarifa.title }} — €{{ cita.tarifa.price }}</p>
+.editar-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #006f6f;
+    margin-bottom: 25px;
+}
 
-        <form method="POST">
-            {% csrf_token %}
+.label {
+    font-weight: bold;
+    color: #006f6f;
+    margin-bottom: 6px;
+    display: block;
+}
 
-            <label class="mt-3">Nueva fecha:</label>
-            <input type="date" name="fecha" value="{{ cita.date }}" class="form-control" required>
+.input-box {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #00a7a7;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
 
-            <label class="mt-3">Nueva hora:</label>
-            <select name="hora" class="form-control" required>
-                <option {{ cita.time == "13:15"|yesno:"selected," }}>13:15</option>
-                <option {{ cita.time == "16:30"|yesno:"selected," }}>16:30</option>
-                <option {{ cita.time == "17:00"|yesno:"selected," }}>17:00</option>
-                <option {{ cita.time == "19:00"|yesno:"selected," }}>19:00</option>
-                <option {{ cita.time == "20:00"|yesno:"selected," }}>20:00</option>
-            </select>
+.btn-guardar {
+    width: 100%;
+    padding: 14px;
+    background: #00b8c4;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-guardar:hover {
+    background: #0097a1;
+    transform: scale(1.03);
+}
+
+.btn-volver {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: white;
+    border: 2px solid #00a7a7;
+    color: #00a7a7;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}
+
+.btn-volver:hover {
+    background: #e6ffff;
+}
+
+</style>
+
+
+<div class="editar-wrapper">
+
+    <h2 class="editar-title">Editar Cita</h2>
+
+    <p class="text-center mb-3">
+        <strong>{{ cita.service.title }}</strong><br>
+        {{ cita.tarifa.title }} — €{{ cita.tarifa.price }}
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- FECHA -->
+        <label class="label">Nueva fecha:</label>
+        <input type="date" name="fecha" class="input-box" value="{{ cita.date }}" required>
+
+        <!-- HORA -->
+        <label class="label">Nueva hora:</label>
+        <select name="hora" class="input-box" required>
+
+            <option value="10:00" {% if cita.time == "10:00" %}selected{% endif %}>10:00</option>
+            <option value="10:30" {% if cita.time == "10:30" %}selected{% endif %}>10:30</option>
+            <option value="11:00" {% if cita.time == "11:00" %}selected{% endif %}>11:00</option>
+            <option value="11:30" {% if cita.time == "11:30" %}selected{% endif %}>11:30</option>
+            <option value="12:00" {% if cita.time == "12:00" %}selected{% endif %}>12:00</option>
+            <option value="12:30" {% if cita.time == "12:30" %}selected{% endif %}>12:30</option>
+            <option value="13:00" {% if cita.time == "13:00" %}selected{% endif %}>13:00</option>
+            <option value="13:30" {% if cita.time == "13:30" %}selected{% endif %}>13:30</option>
+            <option value="17:00" {% if cita.time == "17:00" %}selected{% endif %}>17:00</option>
+            <option value="17:30" {% if cita.time == "17:30" %}selected{% endif %}>17:30</option>
+            <option value="18:00" {% if cita.time == "18:00" %}selected{% endif %}>18:00</option>
+            <option value="18:30" {% if cita.time == "18:30" %}selected{% endif %}>18:30</option>
+
+
+        </select>
+
+        <button class="btn-guardar">Guardar cambios</button>
+    </form>
+
+    <a href="/citas/" class="btn-volver">Volver</a>
+</div>
+
+{% endblock %}

@@ -13,55 +13,37 @@
 
 
 <!-- =========================== -->
-<!--       SLIDER SERVICIOS      -->
+<!--       SERVICIOS GRID        -->
 <!-- =========================== -->
 
-<section class="servicios-slider-section">
+<section class="servicios-grid-section">
 
-    <div class="slider-container">
+    <h2 class="servicios-title">Nuestros Servicios</h2>
 
-        <button class="slider-btn left" onclick="moveSlide(-1)">&#8249;</button>
+    <div class="servicios-grid">
 
-        <div class="slider-wrapper" id="serviciosSlider">
-
-            {% for s in servicios %}
-            <div class="slide">
-                <div class="slide-content">
-
-                    <div class="slide-text">
-                        <h4 class="slide-subtitle">{{ s.subtitle }}</h4>
-                        <h2 class="slide-title">{{ s.title }}</h2>
-
-                        <p class="slide-description">
-                            {{ s.description }}
-                        </p>
-
-                        <a href="/citas/" class="btn-reservar">
-                            RESERVA TU SESIÓN DE {{ s.title|upper }}
-                        </a>
-                    </div>
-
-                    <div class="slide-image">
-                        {% if s.image %}
-                        <img src="{{ s.image.url }}" alt="{{ s.title }}">
-                        {% endif %}
-                    </div>
-
-                </div>
-            </div>
-            {% endfor %}
-
-        </div>
-
-        <button class="slider-btn right" onclick="moveSlide(1)">&#8250;</button>
-
-    </div>
-
-    <!-- Dots -->
-    <div class="dots">
         {% for s in servicios %}
-        <span class="dot" onclick="goToSlide({{ forloop.counter0 }})"></span>
+        <div class="servicio-card">
+            <div class="servicio-image">
+                {% if s.image %}
+                <img src="{{ s.image.url }}" alt="{{ s.title }}">
+                {% endif %}
+            </div>
+            <div class="servicio-content">
+                <h4 class="servicio-subtitle">{{ s.subtitle }}</h4>
+                <h3 class="servicio-title">{{ s.title }}</h3>
+                <div class="servicio-description-container">
+                    <p class="servicio-description">{{ s.description|truncatechars:150 }}</p>
+                    {% if s.description|length > 150 %}
+                    <button class="read-more-btn" onclick="toggleDescription(this)">Leer Más</button>
+                    <p class="servicio-description-full">{{ s.description }}</p>
+                    {% endif %}
+                </div>
+                <a href="/citas/crear/{{ s.id }}/{{ s.tarifas.first.id }}/" class="btn-reservar">RESERVA TU SESIÓN DE {{ s.title|upper }}</a>
+            </div>
+        </div>
         {% endfor %}
+
     </div>
 
 </section>
@@ -87,7 +69,10 @@
             <p class="tarifa-desc">{{ t.description }}</p>
             {% endif %}
 
-            <a href="/citas/" class="tarifa-btn">RESERVAR</a>
+            <a href="/citas/crear/{{ s.id }}/{{ s.tarifa_default.id }}/" class="btn-reservar">
+                RESERVA TU SESIÓN DE {{ s.title|upper }}
+            </a>
+
         </div>
         {% endfor %}
 
@@ -125,101 +110,105 @@
     padding: 50px 0;
 }
 
-.slider-container {
-    position: relative;
-    display: flex;
-    align-items: center;
+.servicios-grid-section {
+    padding: 50px 0;
 }
 
-.slider-btn {
-    background: #02A8A8;
-    border: none;
-    color: white;
+.servicios-title {
+    text-align: center;
     font-size: 32px;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 10;
+    color: #006666;
+    margin-bottom: 40px;
 }
 
-.slider-wrapper {
-    display: flex;
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 0 40px;
+}
+
+.servicio-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servicio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.servicio-image img {
     width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
-.slide {
-    min-width: 100%;
-    transition: 0.4s ease-in-out;
-    padding: 20px 40px;
+.servicio-content {
+    padding: 20px;
 }
 
-.slide-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.slide-text {
-    width: 48%;
-}
-
-.slide-subtitle {
+.servicio-subtitle {
     font-size: 14px;
     text-transform: uppercase;
     color: #008080;
+    margin-bottom: 5px;
 }
 
-.slide-title {
-    font-size: 34px;
+.servicio-title {
+    font-size: 24px;
     color: #006666;
-    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.slide-description {
-    margin-top: 10px;
+.servicio-description {
     color: #444;
     font-size: 16px;
-    line-height: 1.6;
-    white-space: normal;
-    overflow: visible;
-    max-height: none;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.read-more-btn {
+    background: none;
+    border: none;
+    color: #02A8A8;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.read-more-btn:hover {
+    color: #009999;
+}
+
+.servicio-description-full {
+    color: #444;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
 .btn-reservar {
     display: inline-block;
     background: #02A8A8;
     color: white;
-    padding: 12px 30px;
+    padding: 10px 20px;
     border-radius: 6px;
-    margin-top: 20px;
     text-decoration: none;
+    font-weight: bold;
 }
 
-.slide-image img {
-    width: 420px;
-    border-radius: 10px;
-}
-
-
-/* Dots */
-.dots {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.dot {
-    height: 10px;
-    width: 10px;
-    margin: 0 4px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.dot.active {
-    background-color: #02A8A8;
+.btn-reservar:hover {
+    background: #009999;
 }
 
 
@@ -282,38 +271,29 @@
 
 
 
-<!-- =========================== -->
-<!--        JAVASCRIPT           -->
-<!-- =========================== -->
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+function toggleDescription(btn) {
+    const container = btn.parentElement;
+    const shortDesc = container.querySelector('.servicio-description');
+    const fullDesc = container.querySelector('.servicio-description-full');
 
-    let currentSlide = 0;
-
-    const slides = document.querySelectorAll(".slide");
-    const slider = document.getElementById("serviciosSlider");
-    const dots = document.querySelectorAll(".dot");
-
-    function updateSlider() {
-        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-        dots.forEach(d => d.classList.remove("active"));
-        dots[currentSlide].classList.add("active");
+    if (fullDesc.style.maxHeight === '0px' || fullDesc.style.maxHeight === '') {
+        // Expand
+        shortDesc.style.maxHeight = '0px';
+        shortDesc.style.opacity = '0';
+        fullDesc.style.maxHeight = '1000px'; // Large enough for long text
+        fullDesc.style.opacity = '1';
+        btn.textContent = 'Leer Menos';
+    } else {
+        // Collapse
+        shortDesc.style.maxHeight = '1000px';
+        shortDesc.style.opacity = '1';
+        fullDesc.style.maxHeight = '0px';
+        fullDesc.style.opacity = '0';
+        btn.textContent = 'Leer Más';
     }
-
-    window.moveSlide = function (direction) {
-        currentSlide = (currentSlide + direction + slides.length) % slides.length;
-        updateSlider();
-    }
-
-    window.goToSlide = function (n) {
-        currentSlide = n;
-        updateSlider();
-    }
-
-    updateSlider();
-});
+}
 </script>
-
 
 {% endblock %}
