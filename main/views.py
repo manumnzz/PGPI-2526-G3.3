@@ -45,7 +45,20 @@ def servicio_detalle(request, service_id):
 # ------------------------------------
 def productos_list(request):
     productos = Product.objects.all()
-    return render(request, "productos/list.html", {"productos": productos})
+
+    # Handle search query
+    query = request.GET.get('q')
+    if query:
+        productos = productos.filter(name__icontains=query)
+
+    # Handle sorting
+    sort = request.GET.get('sort')
+    if sort == 'price_asc':
+        productos = productos.order_by('price')
+    elif sort == 'price_desc':
+        productos = productos.order_by('-price')
+
+    return render(request, "productos/list.html", {"productos": productos, "request": request})
 
 
 # ------------------------------------
@@ -62,9 +75,17 @@ def crear_cita(request, service_id, tarifa_id):
     service = get_object_or_404(Service, id=service_id)
     tarifa = get_object_or_404(Tarifa, id=tarifa_id)
 
+    services = Service.objects.all()
+    tarifas = Tarifa.objects.filter(service=service)
+
     if request.method == "POST":
         fecha = request.POST.get("fecha")
         hora = request.POST.get("hora")
+        servicio_id = request.POST.get("service_id")
+        tarifa_id = request.POST.get("tarifa_id")
+
+        service = Service.objects.get(id=servicio_id)
+        tarifa = Tarifa.objects.get(id=tarifa_id)
 
         Cita.objects.create(
             user=request.user.profile,
@@ -78,8 +99,9 @@ def crear_cita(request, service_id, tarifa_id):
     return render(request, "citas/crear.html", {
         "service": service,
         "tarifa": tarifa,
+        "services": services,
+        "tarifas": tarifas,
     })
-
 
 @login_required
 def editar_cita(request, cita_id):
