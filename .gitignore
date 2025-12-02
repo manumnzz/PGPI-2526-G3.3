@@ -1,0 +1,8 @@
+# Archivos y carpetas generadas por Python
+_pycache_/
+*.pyc
+
+# Ignorar el entorno virtual completo
+# (Reemplaza 'venv' si tu entorno se llama diferente)
+venv/
+.venv/
