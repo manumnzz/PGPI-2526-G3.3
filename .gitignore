@@ -2,6 +2,8 @@
 __pycache__/
 */__pycache__/
 *.pyc
+*.pyo
+*.pyd
 
 # Ignorar el entorno virtual completo
 # (Reemplaza 'venv' si tu entorno se llama diferente)
