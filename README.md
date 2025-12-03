@@ -153,7 +153,7 @@ http://127.0.0.1:8000/
 **Manuel Buzón Muñoz (manumnzz)**  
 **Dario Rodriguez Sastre (darrodsas)**  
 **Mario Astudillo Fierro (marastfie)**  
-**Fernando Murillo Bravo ()**  
+**Fernando Murillo Bravo (fermurbra)**  
 **Manuel Lavado Corredera (60Manu82)**  
 
 Proyecto universitario real para una consulta profesional.

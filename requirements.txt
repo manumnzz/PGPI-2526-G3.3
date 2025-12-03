@@ -1,7 +1,7 @@
 # --- CORE DJANGO ---
 Django==5.0.3
 
-# --- MANEJO DE IMÁGENES (OBLIGATORIO PARA ImageField) ---
+# --- MANEJO DE IMAGENES (OBLIGATORIO PARA ImageField) ---
 Pillow==10.2.0
 
 # --- SCRAPING ---
@@ -11,8 +11,16 @@ beautifulsoup4==4.12.3
 # --- ENTORNO / VARIABLES DE ENTORNO ---
 python-dotenv==1.0.1
 
-# --- SI USAS MYSQL / MARIADB (si no, bórralo) ---
+# --- SI USAS MYSQL / MARIADB (si no, borralo) ---
 # mysqlclient==2.2.0
 
 # --- SI USAS DJANGO-DEBUG-TOOLBAR EN DESARROLLO ---
 # django-debug-toolbar==4.2.0
+
+# ----------------------------------------------------
+# --- REQUISITOS CLAVE PARA PRODUCCIÓN EN RENDER (PaaS) ---
+# ----------------------------------------------------
+gunicorn==22.0.0
+psycopg2-binary==2.9.9
+dj-database-url==2.1.0 
+whitenoise==6.6.0
