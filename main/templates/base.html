@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Natursur</title>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'natursur_icon.png' %}">
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
 
@@ -296,24 +299,30 @@
             <p class="footer-info">📞 691 355 682</p>
 
             <div class="footer-socials">
-                <a target="_blank">
+
+                <!-- FACEBOOK -->
+                <a href="https://www.facebook.com/natursur" target="_blank">
                     <div class="social-icon">
                         <img src="{% static 'icons/facebook.png' %}">
                     </div>
                 </a>
 
-                <a target="_blank">
+                <!-- INSTAGRAM -->
+                <a href="https://www.instagram.com/yosoyescalona/?hl=es" target="_blank">
                     <div class="social-icon">
                         <img src="{% static 'icons/instagram.png' %}">
                     </div>
                 </a>
 
-                <a target="_blank">
+                <!-- YOUTUBE -->
+                <a href="https://www.youtube.com/@natursur" target="_blank">
                     <div class="social-icon">
                         <img src="{% static 'icons/youtube.png' %}">
                     </div>
                 </a>
+
             </div>
+
         </div>
 
     </div>

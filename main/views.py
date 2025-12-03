@@ -77,7 +77,7 @@ def crear_cita(request, service_id, tarifa_id):
     tarifa = get_object_or_404(Tarifa, id=tarifa_id)
 
     services = Service.objects.all()
-    tarifas = Tarifa.objects.filter(service=service)
+    tarifas = Tarifa.objects.all()
 
     if request.method == "POST":
         fecha = request.POST.get("fecha")
@@ -97,12 +97,21 @@ def crear_cita(request, service_id, tarifa_id):
         )
         return redirect("citas_list")
 
+    hours = [
+        "10:00","10:30","11:00","11:30",
+        "12:00","12:30","13:00","13:30",
+        "17:00","17:30","18:00","18:30"
+    ]
+
+
     return render(request, "citas/crear.html", {
         "service": service,
         "tarifa": tarifa,
         "services": services,
         "tarifas": tarifas,
+        "hours": hours,
     })
+
 
 @login_required
 def editar_cita(request, cita_id):
@@ -181,18 +190,14 @@ def register_view(request):
                     last_name=data["last_name"],
                 )
 
-                # No guardar password en el perfil (se guarda hasheada en auth_user)
                 Profile.objects.create(
                     django_user=django_user,
-                    first_name=data["first_name"],
-                    last_name=data["last_name"],
-                    username=data["username"],
-                    mail=data["mail"],
                     direccion=data["direccion"],
                     postal_code=data["postal_code"],
                     age=data["age"],
                     telephone_number=data["telephone_number"],
                 )
+
         except Exception as e:
             errors["global"] = "No se pudo registrar el usuario."
             return render(request, "register.html", {"errors": errors, "data": data})

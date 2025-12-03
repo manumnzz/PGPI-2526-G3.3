@@ -3,101 +3,223 @@
 {% block content %}
 
 <style>
-.form-wrapper {
-    max-width: 650px;
-    margin: 50px auto;
+
+/* ============================== */
+/*   LAYOUT GENERAL DEL FORM      */
+/* ============================== */
+
+.profile-edit-wrapper {
+    max-width: 900px;
+    margin: 60px auto;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 40px;
+    padding: 20px;
+}
+
+.profile-form {
     background: white;
     padding: 35px;
     border-radius: 20px;
     border: 2px solid #00a7a7;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
 }
 
 .form-title {
     text-align: center;
-    color: #007f7f;
-    font-size: 32px;
+    font-size: 34px;
     font-weight: bold;
-    margin-bottom: 25px;
+    color: #006666;
+    margin-bottom: 30px;
 }
 
+/* ============================== */
+/*         CAMPOS DEL FORM        */
+/* ============================== */
+
 .form-field {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .form-field label {
     font-weight: 600;
     color: #006060;
+    margin-bottom: 6px;
+    display: block;
 }
 
 .form-field input {
     width: 100%;
-    padding: 12px;
-    border-radius: 10px;
+    padding: 12px 14px;
+    border-radius: 12px;
     border: 2px solid #00a7a7;
+    transition: .2s;
+    font-size: 16px;
+    color: #004f4f;
 }
+
+.form-field input:focus {
+    outline: none;
+    border-color: #007f7f;
+    box-shadow: 0 0 4px rgba(0,150,150,0.4);
+}
+
+/* ============================== */
+/*            BOTONES             */
+/* ============================== */
 
 .btn-save {
     width: 100%;
-    background: #00a7a7;
+    background: #007f7f;
     color: white;
     padding: 14px;
-    font-size: 18px;
-    border-radius: 10px;
+    font-size: 20px;
+    border-radius: 12px;
     border: none;
     margin-top: 15px;
     transition: .2s;
 }
 
 .btn-save:hover {
-    background: #008888;
+    background: #006868;
     transform: scale(1.03);
 }
+
+.btn-citas {
+    width: 100%;
+    background: white;
+    border: 2px solid #00a7a7;
+    color: #007f7f;
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 12px;
+    margin-top: 12px;
+    transition: .2s;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-citas:hover {
+    background: #e5ffff;
+    transform: scale(1.03);
+}
+
+/* ============================== */
+/*        PANEL DE PERFIL         */
+/* ============================== */
+
+.profile-card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    border: 2px solid #00a7a7;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+}
+
+.avatar-preview {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #00a7a7;
+    margin-bottom: 15px;
+}
+
+.profile-name {
+    font-size: 20px;
+    color: #006060;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.profile-info {
+    font-size: 15px;
+    color: #666;
+}
+
 </style>
 
-<div class="form-wrapper">
-    <h2 class="form-title">Editar Perfil</h2>
 
-    <form method="POST" action="{% url 'perfil_editar' %}" enctype="multipart/form-data">
-        {% csrf_token %}
+<!-- ============================== -->
+<!--         CONTENIDO             -->
+<!-- ============================== -->
 
-        <div class="form-field">
-            <label>Nombre</label>
-            <input type="text" name="first_name" value="{{ user.first_name }}">
-        </div>
+<div class="profile-edit-wrapper">
 
-        <div class="form-field">
-            <label>Apellidos</label>
-            <input type="text" name="last_name" value="{{ user.last_name }}">
-        </div>
+    <!-- ========================= -->
+    <!--   FORMULARIO IZQUIERDO    -->
+    <!-- ========================= -->
+    <div class="profile-form">
 
-        <div class="form-field">
-            <label>Dirección</label>
-            <input type="text" name="direccion" value="{{ user.direccion }}">
-        </div>
+        <h2 class="form-title">Editar Perfil</h2>
 
-        <div class="form-field">
-            <label>Código Postal</label>
-            <input type="text" name="postal_code" value="{{ user.postal_code }}">
-        </div>
+        <form method="POST" action="{% url 'perfil_editar' %}" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        <div class="form-field">
-            <label>Edad</label>
-            <input type="number" name="age" value="{{ user.age }}">
-        </div>
+            <div class="form-field">
+                <label>Nombre</label>
+                <input type="text" name="first_name" value="{{ user.first_name }}">
+            </div>
 
-        <div class="form-field">
-            <label>Teléfono</label>
-            <input type="text" name="telephone_number" value="{{ user.telephone_number }}">
-        </div>
+            <div class="form-field">
+                <label>Apellidos</label>
+                <input type="text" name="last_name" value="{{ user.last_name }}">
+            </div>
 
-        <div class="form-field">
-            <label>Foto de perfil</label>
-            <input type="file" name="image">
-        </div>
+            <div class="form-field">
+                <label>Dirección</label>
+                <input type="text" name="direccion" value="{{ user.direccion }}">
+            </div>
 
-        <button class="btn-save">Guardar cambios</button>
-    </form>
+            <div class="form-field">
+                <label>Código Postal</label>
+                <input type="text" name="postal_code" value="{{ user.postal_code }}">
+            </div>
+
+            <div class="form-field">
+                <label>Edad</label>
+                <input type="number" name="age" value="{{ user.age }}">
+            </div>
+
+            <div class="form-field">
+                <label>Teléfono</label>
+                <input type="text" name="telephone_number" value="{{ user.telephone_number }}">
+            </div>
+
+            <div class="form-field">
+                <label>Foto de perfil</label>
+                <input type="file" name="image">
+            </div>
+
+            <button class="btn-save">Guardar cambios</button>
+        </form>
+
+        <!-- BOTÓN A CITAS -->
+        <a href="{% url 'citas_list' %}" class="btn-citas">Gestionar Citas</a>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!--   PANEL DE PREVISUALIZACIÓN -->
+    <!-- ========================= -->
+    <div class="profile-card">
+
+        {% if user.image %}
+            <img src="{{ user.image.url }}" class="avatar-preview">
+        {% else %}
+            <img src="{% static 'default_user.png' %}" class="avatar-preview">
+        {% endif %}
+
+        <div class="profile-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="profile-info">{{ user.direccion }}</div>
+        <div class="profile-info">{{ user.telephone_number }}</div>
+
+    </div>
+
 </div>
 
 {% endblock %}
