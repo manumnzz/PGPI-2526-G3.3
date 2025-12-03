@@ -75,7 +75,7 @@ def scrape_products():
 
 
         # Descargar imagen
-        if img_url:
+        if img_url and (created or not product.image):
             print(f"Descargando imagen de: {img_url}")
             img_temp = download_image(img_url)
             product.image.save(os.path.basename(img_url), File(img_temp), save=True)
