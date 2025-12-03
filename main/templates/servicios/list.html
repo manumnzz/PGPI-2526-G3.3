@@ -39,7 +39,7 @@
                     <p class="servicio-description-full">{{ s.description }}</p>
                     {% endif %}
                 </div>
-                <a href="/citas/crear/{{ s.id }}/{{ s.tarifas.first.id }}/" class="btn-reservar">RESERVA TU SESIÓN DE {{ s.title|upper }}</a>
+                <a href="/citas/crear/{{ s.id }}/1/" class="btn-reservar">RESERVA TU SESIÓN DE {{ s.title|upper }}</a>
             </div>
         </div>
         {% endfor %}
@@ -69,7 +69,7 @@
             <p class="tarifa-desc">{{ t.description }}</p>
             {% endif %}
 
-            <a href="/citas/crear/{{ s.id }}/{{ s.tarifa_default.id }}/" class="btn-reservar">
+            <a href="/citas/crear/1/{{ s.tarifa_default.id }}/" class="btn-reservar">
                 RESERVA TU SESIÓN DE {{ s.title|upper }}
             </a>
 

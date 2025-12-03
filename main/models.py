@@ -26,14 +26,11 @@ class User(models.Model):
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    username = models.CharField(max_length=30, unique=True)
-    mail = models.EmailField(unique=True)
     direccion = models.CharField(max_length=255)
     postal_code = models.CharField(max_length=20)
     age = models.PositiveIntegerField()
     telephone_number = models.CharField(max_length=20)
     image = models.ImageField(upload_to='users/', blank=True, null=True)
-    password = models.CharField(max_length=128)
 
     def __str__(self):
         return f"{self.username} ({self.first_name} {self.last_name})"
@@ -65,4 +62,5 @@ class Cita(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user.username} - {self.service.title} ({self.date} {self.time})"
+        return f"{self.user.django_user.username} - {self.service.title}"
+
