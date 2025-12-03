@@ -2,7 +2,7 @@
 Django==5.0.3
 
 # --- MANEJO DE IMAGENES (OBLIGATORIO PARA ImageField) ---
-Pillow==10.2.0
+Pillow==10.4.0
 
 # --- SCRAPING ---
 requests==2.31.0
