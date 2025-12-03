@@ -13,3 +13,7 @@ venv/
 # Bases de datos SQLite (cada desarrollador tiene la suya)
 db.sqlite3
 *.sqlite3
+db.sqlite3
+
+#pycache de Natursur
+Natursur/__pycache__/*
