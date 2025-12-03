@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from . import views, bot
 
 urlpatterns = [
     # HOME
@@ -29,4 +29,7 @@ urlpatterns = [
 
     # SOBRE NOSOTROS
     path("sobre-nosotros/", views.sobre_nosotros, name="sobre_nosotros"),
+
+    #BOT
+    path("api/assistant/", bot.api_assistant, name="api_assistant"),
 ]
