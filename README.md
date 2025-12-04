@@ -91,10 +91,6 @@ Activarlo:
 
 ```bash
 pip install -r requirements.txt
-python manage.py migrate
-python manage.py seed
-python manage.py update_products
-python manage.py createsuperuser
 ```
 
 
@@ -113,6 +109,8 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 
 ```bash
 python manage.py migrate
+python manage.py seed
+python manage.py update_products
 ```
 
 ## 6️⃣ Crear un superusuario
