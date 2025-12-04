@@ -91,7 +91,9 @@ Activarlo:
 
 ```bash
 pip install -r requirements.txt
+python manage.py collectstatic --no-input
 ```
+
 
 ## 4️⃣ Configurar variables de entorno (.env)
 
@@ -100,6 +102,8 @@ Crea un archivo llamado `.env` en la raíz del proyecto:
 ```
 GROQ_API_KEY=TU_API_KEY_AQUI
 GROQ_MODEL=llama-3.3-70b-versatile
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
 ```
 
 ## 5️⃣ Aplicar migraciones
