@@ -67,7 +67,7 @@ def productos_list(request):
 # ------------------------------------
 @login_required
 def citas_list(request):
-    citas = Cita.objects.filter(user=request.user.profile)
+    citas = Cita.objects.filter(user=request.user.profile, estado="activa")
     return render(request, "citas/list.html", {"citas": citas})
 
 
