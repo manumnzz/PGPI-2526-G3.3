@@ -18,6 +18,7 @@ services:
         sync: false  
       - key: DATABASE_URL
         fromService:
+          type: postgres
           name: natursur-db
           property: connectionString
 
